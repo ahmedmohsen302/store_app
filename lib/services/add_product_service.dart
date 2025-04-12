@@ -6,7 +6,6 @@ class AddProductService {
   final dio = Dio();
 
   Future<ProductModel> addProduct({
-    required String url,
     required String id,
     required String title,
     required String price,
@@ -15,7 +14,7 @@ class AddProductService {
     required String category,
   }) async {
     Map<String, dynamic> data = await Api().post(
-      url: url,
+      url: 'https://fakestoreapi.com/products',
       body: {
         'id': id,
         'title': title,

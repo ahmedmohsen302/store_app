@@ -6,16 +6,15 @@ class UpdateProductService {
   final dio = Dio();
 
   Future<ProductModel> updateProduct({
-    required String url,
-    required String id,
+    required dynamic id,
     required String title,
-    required String price,
+    required dynamic price,
     required String description,
     required String image,
     required String category,
   }) async {
     Map<String, dynamic> data = await Api().put(
-      url: url,
+      url: 'https://fakestoreapi.com/products/$id',
       body: {
         'id': id,
         'title': title,

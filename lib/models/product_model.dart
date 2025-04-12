@@ -1,7 +1,7 @@
 class ProductModel {
-  final int id;
+  final dynamic id;
   final String title;
-  final double price;
+  final dynamic price;
   final String description;
   final String category;
   final String image;
@@ -21,25 +21,25 @@ class ProductModel {
     return ProductModel(
       id: json['id'],
       title: json['title'],
-      price: (json['price'] as num).toDouble(),
+      price: json['price'],
       description: json['description'],
       category: json['category'],
       image: json['image'],
-      rating: RatingModel.fromJson(json['rating']),
+      rating:
+          json['rating'] != null
+              ? RatingModel.fromJson(json['rating'])
+              : RatingModel(rate: 0.0, count: 0),
     );
   }
 }
 
 class RatingModel {
-  final double rate;
-  final int count;
+  final dynamic rate;
+  final dynamic count;
 
   RatingModel({required this.rate, required this.count});
 
   factory RatingModel.fromJson(json) {
-    return RatingModel(
-      rate: (json['rate'] as num).toDouble(),
-      count: json['count'],
-    );
+    return RatingModel(rate: json['rate'], count: json['count']);
   }
 }

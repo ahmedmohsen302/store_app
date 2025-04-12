@@ -3,10 +3,15 @@ import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/all_products_service.dart';
 import 'package:store_app/widgets/custom_card.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
   static String id = 'homeView';
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +54,9 @@ class HomeView extends StatelessWidget {
                     return CustomCard(product: products[index]);
                   },
                 );
-              } else
+              } else {
                 return CircularProgressIndicator();
+              }
             },
           ),
         ),
