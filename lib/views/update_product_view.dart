@@ -4,19 +4,11 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/cubits/update_product_cubit/update_product_cubit.dart';
 import 'package:store_app/cubits/update_product_cubit/update_product_state.dart';
 import 'package:store_app/models/product_model.dart';
-import 'package:store_app/services/update_product_service.dart';
 import 'package:store_app/widgets/custom_button.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
-class UpdateProductView extends StatefulWidget {
-  UpdateProductView({super.key});
+class UpdateProductView extends StatelessWidget {
   static String id = 'updateProuductView';
-
-  @override
-  State<UpdateProductView> createState() => _UpdateProductViewState();
-}
-
-class _UpdateProductViewState extends State<UpdateProductView> {
   String? title;
 
   String? price;
@@ -25,6 +17,8 @@ class _UpdateProductViewState extends State<UpdateProductView> {
 
   String? dsecreption;
   bool isLoading = false;
+
+  UpdateProductView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,10 +88,6 @@ class _UpdateProductViewState extends State<UpdateProductView> {
                   CustomButton(
                     text: 'Update',
                     onTap: () async {
-                      setState(() {
-                        isLoading = true;
-                      });
-
                       BlocProvider.of<UpdateProductCubit>(
                         context,
                       ).updateProducts(
